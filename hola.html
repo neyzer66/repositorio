@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clínica Animal Vida</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color: #f2f6f9;
+            color: #222;
+            font-family: 'Arial', sans-serif;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 960px;
+            line-height: 1.6;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #3e8e41;
+            font-size: 2.5em;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #3e8e41;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        section {
+            display: none;
+        }
+
+        .activo {
+            display: block;
+        }
+
+        .catalogo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .producto {
+            width: 280px;
+            background-color: #fff;
+            border: 1px solid #c2e0c6;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 1px 1px 5px rgba(0,0,0,0.05);
+        }
+
+        button {
+            background-color: #3e8e41;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px auto;
+            display: block;
+        }
+
+        button:hover {
+            background-color: #2f6e31;
+        }
+
+        #controles {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bienvenidos a Clínica Animal Vida</h1>
+    <button onclick="toggleControles()">Mostrar/Ocultar Controles</button>
+
+    <div id="controles">
+        <button onclick="cambiarFondo()">Cambiar color de fondo</button>
+
+        <nav>
+            <a onclick="mostrar('quienes')">Sobre Nosotros</a>
+            <a onclick="mostrar('servicios')">Servicios</a>
+            <a onclick="mostrar('fecha')">Inauguración</a>
+            <a onclick="mostrar('equipo')">Nuestro Equipo</a>
+            <a onclick="mostrar('catalogo')">Productos</a>
+        </nav>
+    </div>
+
+    <main>
+        <section id="quienes" class="activo">
+            <h2>¿Quiénes somos?</h2>
+            <p>Clínica Animal Vida es un centro veterinario con enfoque holístico y tecnología avanzada para cuidar a tus mascotas como parte de tu familia.</p>
+        </section>
+
+        <section id="servicios">
+            <h2>Servicios Veterinarios</h2>
+            <dl>
+                <dt>Consulta Especializada</dt>
+                <dd>Evaluación completa por médicos con experiencia en animales domésticos y exóticos.</dd>
+
+                <dt>Vacunación</dt>
+                <dd>Vacunas preventivas con esquemas personalizados.</dd>
+
+                <dt>Rehabilitación</dt>
+                <dd>Tratamientos físicos y alternativos para recuperación postquirúrgica.</dd>
+            </dl>
+            <details>
+                <summary>Otros servicios</summary>
+                <ul>
+                    <li>Odontología animal</li>
+                    <li>Ultrasonido y rayos X</li>
+                    <li>Peluquería canina y felina</li>
+                    <li>Emergencias 24/7</li>
+                </ul>
+            </details>
+        </section>
+
+        <section id="fecha">
+            <h2>Fecha de Inauguración</h2>
+            <p>Iniciamos operaciones el <time datetime="2021-05-15">15 de mayo de 2021</time>.</p>
+        </section>
+
+        <section id="equipo">
+            <h2>Conoce al equipo</h2>
+            <p>Fundada por la MVZ Alejandra Rivera y su equipo de profesionales apasionados por el bienestar animal.</p>
+        </section>
+
+        <section id="catalogo">
+            <h2>Productos Recomendados</h2>
+            <div class="catalogo">
+                <div class="producto">
+                    <h3>Alimento Premium Cachorros</h3>
+                    <p>Nutrición completa para cachorros de raza mediana y grande.</p>
+                    <p><strong>Precio:</strong> $350 MXN</p>
+                </div>
+
+                <div class="producto">
+                    <h3>Galletas Naturales</h3>
+                    <p>Snacks sin conservadores, ideales como premio.</p>
+                    <p><strong>Precio:</strong> $90 MXN</p>
+                </div>
+
+                <div class="producto">
+                    <h3>Spray Antipulgas</h3>
+                    <p>Solución efectiva y natural contra pulgas y garrapatas.</p>
+                    <p><strong>Precio:</strong> $120 MXN</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function mostrar(id) {
+            const secciones = document.querySelectorAll('main section');
+            secciones.forEach(sec => sec.classList.remove('activo'));
+            document.getElementById(id).classList.add('activo');
+        }
+
+        window.onload = function() {
+            const nombre = prompt("¡Bienvenido a Clínica Animal Vida! ¿Cuál es tu nombre?");
+            if (nombre) {
+                alert("Hola, " + nombre + ". ¡Nos alegra verte!");
+            }
+        }
+
+        function cambiarFondo() {
+            const colores = ['#f2f6f9', '#e9f7ef', '#fff3cd', '#fce4ec', '#ffffff'];
+            const colorActual = document.body.style.backgroundColor;
+            let nuevoColor;
+            do {
+                nuevoColor = colores[Math.floor(Math.random() * colores.length)];
+            } while (nuevoColor === colorActual);
+            document.body.style.backgroundColor = nuevoColor;
+        }
+
+        function toggleControles() {
+            const controles = document.getElementById('controles');
+            controles.style.display = (controles.style.display === 'none' || controles.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+
+</body>
+</html>
